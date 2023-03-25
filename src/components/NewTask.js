@@ -9,8 +9,7 @@ export default function NewTask(props) {
         }
         props.onAddTask(taskData);
     }
-    
   return (
-    <AddTaskForm onSaveTask={saveTaskHandler} />
+    <AddTaskForm onSaveTask={saveTaskHandler}/>
   )
 }

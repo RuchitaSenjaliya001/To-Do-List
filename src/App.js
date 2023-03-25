@@ -27,32 +27,26 @@ function App() {
     console.log(tasks);
   }
   const toggleMode = () => {
-    if (mode === 'light') {
+    if(mode === 'light'){
       setMode('dark');
-      document.body.style.backgroundColor = '#283149';
-      document.body.style.color = '#fff'
+      document.body.style.backgroundColor= '#283149';
+      document.body.style.color='#fff'
       return;
     }
-    if (mode === 'dark') {
+    if(mode === 'dark'){
       setMode('light');
-      document.body.style.backgroundColor = '#fff';
-      document.body.style.color = '#000'
+      document.body.style.backgroundColor= '#fff';
+      document.body.style.color='#000'
       return;
     }
     console.log(mode);
   }
-  const saveTaskHandler = (enteredTaskData) => {
-    const taskData = {
-      ...enteredTaskData,
-      id: Math.random().toString()
-    }
-    addTaskHandler(taskData)
-  }
+  
   return (
     <>
-      <Navbar brand='To-Do List' toggleMode={toggleMode} mode={mode} />
-      <NewTask onAddTask={addTaskHandler} onSave={saveTaskHandler} />
-      <TaskItems items={tasks} mode={mode} onSave={saveTaskHandler}/>
+      <Navbar brand='To-Do List' toggleMode={toggleMode} mode={mode}/>
+      <NewTask onAddTask={addTaskHandler} />
+      <TaskItems items={tasks} mode={mode}/>
     </>
 
   );
