@@ -41,12 +41,18 @@ function App() {
     }
     console.log(mode);
   }
-  
+  const deleteTaskHandler = (taskId)=>{
+    setTasks((prev)=> {
+      const updateTasks = prev.filter((task)=>task.id !== taskId);
+      return updateTasks;
+    })
+  }
+
   return (
     <>
       <Navbar brand='To-Do List' toggleMode={toggleMode} mode={mode}/>
       <NewTask onAddTask={addTaskHandler} />
-      <TaskItems items={tasks} mode={mode}/>
+      <TaskItems items={tasks} mode={mode} onDelete={deleteTaskHandler}/>
     </>
 
   );
