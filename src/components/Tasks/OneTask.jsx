@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Date from './Date';
+import Date from '../UI/Date';
 
 export default function OneTask(props) {
 
@@ -17,7 +17,6 @@ export default function OneTask(props) {
             <div>
                 <div className={`flex justify-between items-center ${props.mode === 'dark' && 'bg-[#7286D3]'} bg-[#7286D3] text-white max-w-6xl m-auto p-3 rounded-lg my-4`}>
                     <div className="flex space-x-6 items-center text-center">
-                        {/* <input type="checkbox" name="check" id="check" className='w-5 h-5' checked={check} onChange={checkBoxClickHandler} onClick={checkBoxClickHandler}/> */}
                         <input type="checkbox" name="check" id="check" className='w-5 h-5' onChange={completeHandler}/>
                         <Date date={props.date} />
                         <div className="text-2xl">{props.title}</div>

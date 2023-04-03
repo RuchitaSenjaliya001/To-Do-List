@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import AddTaskForm from './components/AddTaskForm';
+import React, { useState, useContext } from 'react'
+import AddTaskForm from './components/Tasks/AddTaskForm';
+import LogIn from './components/LogInPage/LogIn';
 import Navbar from './components/Navbar';
-import NewTask from './components/NewTask';
-import TaskItems from './components/TaskItems';
+import NewTask from './components/Tasks/NewTask';
+import TaskItems from './components/Tasks/TaskItems';
+import AuthContext from './store/auth-context';
 
 const DUMMY = [{
   id: 'e1',
@@ -17,8 +19,10 @@ const DUMMY = [{
 ];
 
 function App() {
+  const ctx = useContext(AuthContext);
+
   const [tasks, setTasks] = useState(DUMMY);
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState('light');
 
   const addTaskHandler = (task) => {
     setTasks((prev) => {
@@ -27,32 +31,37 @@ function App() {
     console.log(tasks);
   }
   const toggleMode = () => {
-    if(mode === 'light'){
+    if (mode === 'light') {
       setMode('dark');
-      document.body.style.backgroundColor= '#283149';
-      document.body.style.color='#fff'
+      document.body.style.backgroundColor = '#283149';
+      document.body.style.color = '#fff'
       return;
     }
-    if(mode === 'dark'){
+    if (mode === 'dark') {
       setMode('light');
-      document.body.style.backgroundColor= '#fff';
-      document.body.style.color='#000'
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000'
       return;
     }
     console.log(mode);
   }
-  const deleteTaskHandler = (taskId)=>{
-    setTasks((prev)=> {
-      const updateTasks = prev.filter((task)=>task.id !== taskId);
+  const deleteTaskHandler = (taskId) => {
+    setTasks((prev) => {
+      const updateTasks = prev.filter((task) => task.id !== taskId);
       return updateTasks;
     })
   }
 
   return (
     <>
-      <Navbar brand='To-Do List' toggleMode={toggleMode} mode={mode}/>
-      <NewTask onAddTask={addTaskHandler} />
-      <TaskItems items={tasks} mode={mode} onDelete={deleteTaskHandler}/>
+      {!ctx.isLoggedIn && <LogIn />}
+      {ctx.isLoggedIn &&
+        <main>
+          <Navbar brand='To-Do List' toggleMode={toggleMode} mode={mode} />
+          <NewTask onAddTask={addTaskHandler} />
+          <TaskItems items={tasks} mode={mode} onDelete={deleteTaskHandler} />
+        </main>
+      }
     </>
 
   );

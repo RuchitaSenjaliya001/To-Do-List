@@ -1,5 +1,5 @@
 import React from 'react'
-import AddTaskForm from './AddTaskForm'
+import AddTaskForm from '../Tasks/AddTaskForm'
 
 export default function NewTask(props) {
     const saveTaskHandler = (enteredTaskData)=>{
