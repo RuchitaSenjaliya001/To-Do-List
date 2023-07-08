@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import AuthContext from '../../store/auth-context';
 
 export default function LogIn() {
@@ -32,7 +32,7 @@ export default function LogIn() {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        if(formIsValid){
+        if (formIsValid) {
             ctx.onLogin(enteredEmail, enteredPassword);
         }
     }
@@ -49,10 +49,10 @@ export default function LogIn() {
                         id="email"
                         value={enteredEmail}
                         placeholder="@mail.com"
-                        className={`p-2 rounded ${emailIsValid===false ? 'border-2 border-red-500' : ""}`}
+                        className={`p-2 rounded ${emailIsValid === false ? 'border-2 border-red-500' : ""}`}
                         onChange={emailChangeHandler}
                         onBlur={validEmailHandler} />
-                    {emailIsValid=== false ? <p className='text-sm'>Please enter valid email</p> : ''}
+                    {emailIsValid === false ? <p className='text-sm'>Please enter valid email</p> : ''}
 
                     <label htmlFor="password" className="text-xl py-1 mt-5">Password</label>
                     <input
@@ -60,11 +60,11 @@ export default function LogIn() {
                         id="password"
                         value={enteredPassword}
                         placeholder="Password"
-                        className={`p-2 rounded ${passwordIsValid===false ? 'border-2 border-red-500' : ''}`}
+                        className={`p-2 rounded ${passwordIsValid === false ? 'border-2 border-red-500' : ''}`}
                         onChange={pwdChangeHandler}
                         onBlur={validPasswordHandler} />
-                    {passwordIsValid=== false ? <p className='text-sm'>Must be 8 character at least</p> : ''}
-                   
+                    {passwordIsValid === false ? <p className='text-sm'>Must be 8 character at least</p> : ''}
+
 
                     <div className="row mt-5 flex justify-between">
                         <div className="left">
@@ -76,9 +76,9 @@ export default function LogIn() {
                             <a href="#" className="font-bold text-blue-900 hover:text-blue-700">Forgot Password?</a>
                         </div>
                     </div>
-                
+
                     <button type="submit" className={`bg-[#645CBB] px-5 py-2 my-3 rounded-lg text-white hover:bg-[#4e46aa] duration-300 ${!formIsValid && 'disabled:opacity-50'}`}>Sign in</button>
-                    
+
                 </form>
             </div>
         </>
